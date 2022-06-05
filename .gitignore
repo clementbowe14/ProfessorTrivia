@@ -4,8 +4,6 @@
 *.dll
 *.so
 *.dylib
-
-
 # Test binary, built with `go test -c`
 *.test
 
@@ -17,3 +15,5 @@
 
 #file I use for scratch notes and things I may need to paste
 help.txt
+
+env-config.json
