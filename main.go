@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 
 	"github.com/bwmarrin/discordgo"
@@ -17,12 +18,10 @@ type Config struct {
 
 var token string
 var conf Config
+var game discordGame
 
 func init() {
 
-	// flag.StringVar(&token, "token", "", "Bot token")
-	// flag.StringVar(&message, "message", "", "This is the first message: ")
-	// flag.Parse();
 	file, err := os.Open("env-config.json")
 	if err != nil {
 		panic(err)
@@ -71,5 +70,28 @@ func main() {
 
 //listens to when a message is created
 func discordMessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
-	fmt.Println("New Message!")
+
+	msg := m.Content
+	comm := "!prof"
+
+	if game.channelId == m.ChannelID  {
+		game.handleMessage(m)
+	}
+
+	if strings.HasPrefix(msg, comm) {
+		words := strings.Split(msg, " ")
+
+		if words[1] == "help" {
+			s.ChannelMessageSend(
+				m.ChannelID,
+				"Please let me know what you need help with",
+			)
+		} else if words[1] == "playTrivia" {
+			s.ChannelMessageSend(
+				m.ChannelID,
+				"Now starting a new game of trivia!",
+			)
+		}
+	}
+
 }
