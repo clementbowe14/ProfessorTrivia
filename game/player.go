@@ -1,6 +1,15 @@
 package game
 
+import (
+	"errors"
+)
+const (
+	MAX_POINTS_ADDED = 1000000
 
+)
+var (
+	ErrorInvalidPointsAdded = "An invalid amount of points was added to the total."
+)
 type Player struct {
 	playerId string
 	score int
@@ -16,8 +25,14 @@ func NewPlayer(playerId string) (Player) {
 		score: 0,
 	}
 }
-func(p *Player) AddScore(v int) {
+func(p *Player) AddScore(v int) error {
+	
+	if v < 0  || v > MAX_POINTS_ADDED {
+		return errors.New(ErrorInvalidPointsAdded)
+	}
+	
 	p.score += v
+	return nil
 }
 
 func (p *Player) CorrectAnswer() {

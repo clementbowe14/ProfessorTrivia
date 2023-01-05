@@ -17,14 +17,6 @@ const (
 	ErrorPlayerNotInGame = "is not in the the game."
 )
 
-type Question struct {
-	difficulty int
-	points int
-	topic string
-	query string
-	answer string
-}
-
 type Game struct {
 	players map[string]*Player
 	serverName string
@@ -101,6 +93,8 @@ func (g Game) ShowPlayers() (string, error) {
 	idx := 0
 	for k := range(g.players) {
 		players[idx] = k
+		idx++
+		
 	}
 	return strings.Join(players, " "), nil
 }
