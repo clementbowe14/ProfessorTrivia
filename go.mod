@@ -1,6 +1,6 @@
 module github.com/clementbowe14/ProfessorTrivia
 
-go 1.17
+go 1.18
 
 require (
 	github.com/bwmarrin/discordgo v0.25.0 // indirect

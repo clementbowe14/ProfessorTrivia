@@ -70,7 +70,6 @@ func(g *Game) AddPlayer(playerId string) (error) {
 	if len(g.players) > MAX_TRIVIA_PLAYERS {
 		return errors.New(ErrorMaxPlayersExceeded)
 	}
-	
 	player, ok := g.players[playerId]
 
 	if ok == true {
@@ -94,7 +93,6 @@ func (g Game) ShowPlayers() (string, error) {
 	for k := range(g.players) {
 		players[idx] = k
 		idx++
-		
 	}
 	return strings.Join(players, " "), nil
 }

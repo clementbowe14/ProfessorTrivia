@@ -20,7 +20,6 @@ var (
 	ErrorHintTooLong = "The hint can not exceed 30 characters in length"
 )
 type Question struct {
-	difficulty int
 	points int
 	topic string
 	hint string

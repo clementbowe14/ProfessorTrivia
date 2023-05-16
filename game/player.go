@@ -22,7 +22,6 @@ type Player struct {
 func NewPlayer(playerId string) (Player) {
 	return Player {
 		playerId: playerId,	
-		score: 0,
 	}
 }
 func(p *Player) AddScore(v int) error {
